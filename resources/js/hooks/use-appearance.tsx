@@ -1,6 +1,27 @@
-import { useCallback, useEffect, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 
 export type Appearance = 'light' | 'dark' | 'system';
+
+const AppearanceContext = createContext<{
+    appearance: Appearance;
+    updateAppearance: (mode: Appearance) => void;
+} | null>(null);
+
+export function AppearanceProvider({ children }: { children: ReactNode }) {
+    const appearanceValue = useAppearanceHook();
+
+    return <AppearanceContext.Provider value={appearanceValue}>{children}</AppearanceContext.Provider>;
+}
+
+export function useAppearance() {
+    const context = useContext(AppearanceContext);
+
+    if (!context) {
+        throw new Error('useAppearance must be used within an AppearanceProvider');
+    }
+
+    return context;
+}
 
 const prefersDark = () => {
     if (typeof window === 'undefined') {
@@ -47,7 +68,7 @@ export function initializeTheme() {
     mediaQuery()?.addEventListener('change', handleSystemThemeChange);
 }
 
-export function useAppearance() {
+function useAppearanceHook() {
     const [appearance, setAppearance] = useState<Appearance>('system');
 
     const updateAppearance = useCallback((mode: Appearance) => {

@@ -1,13 +1,16 @@
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { useAppearance } from '@/hooks/use-appearance';
 import { type BreadcrumbItem as BreadcrumbItemType } from '@/types';
 import { GitHubLogoIcon, Half2Icon } from '@radix-ui/react-icons';
+import { useCallback } from 'react';
 import { Button } from './ui/button';
 
 export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: BreadcrumbItemType[] }) {
-    const toggleAppearance = () => {
-        document?.documentElement?.classList?.toggle('dark');
-    };
+    const { appearance, updateAppearance } = useAppearance();
+    const toggleAppearance = useCallback(() => {
+        updateAppearance(appearance === 'dark' ? 'light' : 'dark');
+    }, [appearance, updateAppearance]);
 
     return (
         <header className="sticky top-0 left-0 flex h-16 shrink-0 items-center justify-between gap-2 border-b border-sidebar-border/50 px-6 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 md:px-4">
@@ -22,7 +25,7 @@ export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: Breadcrum
                         <GitHubLogoIcon />
                     </a>
                 </Button>
-                <Button size={'icon'} variant={'ghost'} onClick={toggleAppearance}>
+                <Button size={'icon'} variant={'ghost'} onClick={(toggleAppearance)}>
                     <Half2Icon />
                 </Button>
             </div>
