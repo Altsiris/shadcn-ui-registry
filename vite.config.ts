@@ -24,4 +24,13 @@ export default defineConfig({
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
         },
     },
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './vitest.setup.ts',
+        include: ['resources/js/__tests__/**/*.test.(tsx|ts|js|jsx)'],
+        coverage: {
+            reporter: ['text', 'json', 'html'],
+        },
+    },
 });
