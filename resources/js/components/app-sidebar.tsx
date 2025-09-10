@@ -1,11 +1,11 @@
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { components } from '@/lib/components';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { TimerIcon } from 'lucide-react';
 import AppLogo from './app-logo';
-import { components } from '@/lib/components';
 
 const footerNavItems: NavItem[] = [
     {
