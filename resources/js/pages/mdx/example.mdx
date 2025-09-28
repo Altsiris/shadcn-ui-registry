@@ -1,6 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { InfoAlert, WarningAlert, DangerAlert } from '@/components/docs-alert';
-import { Code } from '@/components/code';
+import { Button, Alert, Code } from '@/lib/mdx-imports';
 
 # Welcome to the About Page
 
@@ -18,15 +16,15 @@ This is an example of an MDX file. You can write **Markdown** as usual, and also
 
 here is an alert:
 
-<InfoAlert>This is an info alert!</InfoAlert>
+<Alert>This is an info alert!</Alert>
 
 ---
 
-<WarningAlert>This is a warning alert!</WarningAlert>
+<Alert variant="warning">This is a warning alert!</Alert>
 
 ---
 
-<DangerAlert>This is a danger alert!</DangerAlert>
+<Alert variant="danger">This is a danger alert!</Alert>
 
 I have some list here:
 
@@ -34,16 +32,19 @@ I have some list here:
 1. Item 2
 1. Item 3
 
-<Code language="php">{`
+<Code language="php">
+{`
 <?php
 
-use App\Http\Controllers\UserController;
+use App\\Http\\Controllers\\UserController;
 
 Route::get('/users', [UserController::class, 'index']);
+`}
 
-`}</Code>
+</Code>
 
-<Code language="typescript">{`
+<Code language="typescript">
+{`
 import { QueryBuilder } from '@/components/ui/query-builder';
 
 type QueryBuilderExample = {
@@ -63,5 +64,6 @@ const qb = QueryBuilder.make('/api/users')
     .include('posts', 'comments')
     .page(2)
     .perPage(15);
+`}
 
-`}</Code>
+</Code>
