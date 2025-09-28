@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class MdxController extends Controller
@@ -13,12 +14,13 @@ class MdxController extends Controller
     {
         $path = resource_path("js/pages/mdx/{$slug}.mdx");
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             abort(404);
         }
 
         return Inertia::render('mdx', [
             'slug' => $slug,
+            'slugHeadline' => Str::headline($slug),
         ]);
     }
 }
