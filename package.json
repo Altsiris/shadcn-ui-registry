@@ -5,11 +5,12 @@
         "build": "vite build",
         "registry:build": "shadcn build",
         "build:ssr": "vite build && vite build --ssr",
-        "test": "vitest",
+        "test": "vitest run",
         "test:watch": "vitest --watch",
         "test:coverage": "vitest run --coverage",
         "dev": "vite",
         "format": "prettier --write resources/",
+        "format:dirty": "prettier --write $(git ls-files -m --others --exclude-standard)",
         "format:check": "prettier --check resources/",
         "changelog": "auto-changelog",
         "lint": "eslint . --fix",
@@ -32,7 +33,7 @@
         "prettier-plugin-organize-imports": "^4.1.0",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "shadcn": "^2.9.3-canary.0",
-        "typescript-eslint": "^8.23.0",
+        "typescript-eslint": "^8.43.0",
         "vitest": "^3.2.4"
     },
     "dependencies": {
