@@ -19,7 +19,7 @@ export default function Mdx({ slug, slugHeadline }: Props) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={slugHeadline} />
-            <div className="mx-auto prose dark:prose-invert">
+            <div className="mx-auto prose px-1 dark:prose-invert">
                 <React.Suspense fallback={<LoadingMdx />}>
                     <MdxComponent />
                 </React.Suspense>
